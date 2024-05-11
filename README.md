@@ -56,3 +56,71 @@ This is a simple Inventory Management System implemented in Python using MySQL d
 - **Supplier**:
   - Login with supplier credentials to view remaining orders.
   - Choose to supply ordered items or exit.
+ 
+# mysql code
+
+- create database
+-- Create the database
+CREATE DATABASE IF NOT EXISTS inventory;
+
+-- Use the database
+USE inventory;
+
+-- Create the admin table
+CREATE TABLE IF NOT EXISTS admin (
+    id VARCHAR(50) PRIMARY KEY,
+    pswd VARCHAR(50)
+);
+
+-- Create the customer table
+CREATE TABLE IF NOT EXISTS customer (
+    id VARCHAR(50) PRIMARY KEY,
+    pswd VARCHAR(50)
+);
+
+-- Create the supplier table
+CREATE TABLE IF NOT EXISTS supplier (
+    id VARCHAR(50) PRIMARY KEY,
+    pswd VARCHAR(50)
+);
+
+-- Create the stock table
+CREATE TABLE IF NOT EXISTS stock (
+    pid INT AUTO_INCREMENT PRIMARY KEY,
+    pname VARCHAR(255),
+    price DECIMAL(10, 2),
+    quantity INT
+);
+
+-- Create the orders table
+CREATE TABLE IF NOT EXISTS orders (
+    pid INT,
+    quantity INT,
+    FOREIGN KEY (pid) REFERENCES stock(pid)
+);
+- inserting values database
+  -- Insert sample data into the admin table
+INSERT INTO admin (id, pswd) VALUES ('admin1', 'password1'), ('admin2', 'password2');
+
+-- Insert sample data into the customer table
+INSERT INTO customer (id, pswd) VALUES ('customer1', 'password1'), ('customer2', 'password2');
+
+-- Insert sample data into the supplier table
+INSERT INTO supplier (id, pswd) VALUES ('supplier1', 'password1'), ('supplier2', 'password2');
+
+-- Insert sample data into the stock table
+INSERT INTO stock (pname, price, quantity) VALUES 
+('Product1', 10.00, 100),
+('Product2', 20.00, 150),
+('Product3', 30.00, 200);
+
+-- Insert sample data into the orders table
+INSERT INTO orders (pid, quantity) VALUES 
+(1, 20),
+(2, 30),
+(3, 40);
+
+
+
+<img width="1440" alt="Screenshot 2024-05-11 at 10 20 37 PM" src="https://github.com/chintalapudipiyush/inventory-management/assets/146371407/5afdc0ec-64bd-49cf-9033-8b737cc9bee5">
+
